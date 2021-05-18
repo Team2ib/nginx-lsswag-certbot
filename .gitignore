@@ -17,3 +17,4 @@ config/nginx/proxy.conf
 config/nginx/ssl.conf
 config/php/
 config/www/
+.env
