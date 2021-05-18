@@ -1,0 +1,30 @@
+---
+version: "2.1"
+services:
+  swag:
+    image: ghcr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+      - URL=wtpho.xyz
+      - SUBDOMAINS=jenkins,portus,staging,production,portainer
+      - VALIDATION=dns
+      - DNSPLUGIN=cloudflare #optional
+#      - PROPAGATION= #optional
+#      - DUCKDNSTOKEN= #optional
+      - EMAIL= vhvictorhang@gmail.com
+#      - ONLY_SUBDOMAINS=false #optional
+#      - EXTRA_DOMAINS=
+#      - STAGING=false #optional
+#      - MAXMINDDB_LICENSE_KEY=nada #optional
+    volumes:
+      - ./config:/config
+    ports:
+      - 443:443
+      - 80:80 #optional
+      - 5000:5000 #portus registry
+    restart: unless-stopped
